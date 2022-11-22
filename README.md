@@ -1,4 +1,13 @@
-# Feedback form using Nextjs and Google-Sheets API
+# Ideas Board using Nextjs and Google-Sheets API
+
+## Built using the project from @geobro
+
+Check out the original project [here](https://github.com/GeoBrodas/nextjs-form-using-google-sheets-api).
+
+- <https://georgey.codes>
+- geobro2310@gmail.com
+
+---
 
 ## Tech Stack
 
@@ -7,13 +16,11 @@
 - React-Hook-Form
 - googleapis
 
+---
+
 ## Run Locally
 
-Clone the project
-
-```bash
-  git clone https://github.com/GeoBrodas/nextjs-form-using-google-sheets-api.git
-```
+Clone this project
 
 Go to the project directory
 
@@ -24,18 +31,17 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  npm install
+  yarn
 ```
+
+Set envs
+
+create a .env with the required envs as shown in `.env.local` with the values.
 
 Start the server
 
 ```bash
-  npm run dev
+  yarn dev
 ```
 
-## Feedback
-
-If you have any feedback, please reach out to us at
-
-- https://georgey.codes
-- geobro2310@gmail.com
+Go to <http://localhost:3000> on your browser to access the page
