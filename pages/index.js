@@ -1,8 +1,18 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
 
-import { VStack, Stack, Text, Input, Button, Flex } from '@chakra-ui/react';
-import { useForm } from 'react-hook-form';
+import {
+  VStack,
+  Stack,
+  Text,
+  Textarea,
+  Input,
+  Button,
+  Link,
+} from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+
+import { useForm } from "react-hook-form";
 
 export default function Home() {
   const {
@@ -13,11 +23,11 @@ export default function Home() {
   } = useForm();
 
   function submitHandler(data) {
-    fetch('/api/sheet', {
-      method: 'POST',
+    fetch("/api/sheet", {
+      method: "POST",
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
     reset(); // clears the input on submitting
@@ -26,50 +36,61 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Idea Board!</title>
       </Head>
-
       <main className={styles.main}>
         <VStack spacing="1px" width="70%" align="center">
           <Text fontSize="2xl" fontWeight="bold">
-            Your response matters!
+            Share Exciting Ideas!
           </Text>
 
-          <Stack textAlign={'center'} flexDirection={'column'}>
+          <Stack textAlign={"center"} flexDirection={"column"}>
             <form onSubmit={handleSubmit(submitHandler)}>
               <Input
                 placeholder="Enter Name"
                 variant="filled"
                 mt={2}
-                {...register('Name', { required: 'Please enter your name' })}
+                {...register("Name", { required: "Please enter your name" })}
               />
               {errors.Name && errors.Name.message}
-              <Input
-                placeholder="Enter Message"
+
+              <Textarea
+                placeholder="Describe your Idea"
                 variant="filled"
                 mt={2}
-                {...register('Feedback', { required: 'Enter your feedback!' })}
+                {...register("Ideas", {
+                  required: "Share an Idea!",
+                })}
               />
-              {errors.Feedback && errors.Feedback.message}
+              {errors.Ideas && errors.Ideas.message}
+
               <VStack align="center">
                 <Button
                   colorScheme="teal"
-                  bg={'gray.500'}
-                  textColor={'white'}
+                  bg={"gray.500"}
+                  textColor={"white"}
                   _hover={{
-                    bgColor: 'pink.200',
-                    textColor: 'gray.900',
+                    bgColor: "pink.200",
+                    textColor: "gray.900",
                   }}
                   type="submit"
-                  mt={2}
-                  variant="ghost"
+                  mt={4}
+                  variant="solid"
                 >
-                  Submit Form
+                  Submit
                 </Button>
               </VStack>
             </form>
           </Stack>
         </VStack>
+
+        <Link
+          href="https://docs.google.com/spreadsheets/d/1IFgo8X_j-37gzs2iFe9loo8hdmE6Muo7UH9_t1c1snM/edit?usp=sharing"
+          marginTop={4}
+          isExternal
+        >
+          View the Google Sheet <ExternalLinkIcon mx="2px" />
+        </Link>
       </main>
     </div>
   );
